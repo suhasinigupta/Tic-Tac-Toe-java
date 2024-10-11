@@ -69,10 +69,18 @@ public class OrderOneWinningStrategy implements WinningStrategy{
     private boolean checkAndUpdateCornerWinner(int i, int j, char sym){
         int r=0 ;
         int c=dimension-1 ;
-        if(i==0 && j==0){cormap.put(sym,cormap.getOrDefault(sym,0)+1)}
-        else if(i==0 && j==dimension-1){cormap.put(sym,cormap.getOrDefault(sym,0)+1)}
-        else if(i==dimension-1 && j==0){cormap.put(sym,cormap.getOrDefault(sym,0)+1)}
-        else if(i==j && i==dimension-1){cormap.put(sym,cormap.getOrDefault(sym,0)+1)}
+        if(i==0 && j==0){
+            cormap.put(sym,cormap.getOrDefault(sym,0)+1) ;
+        }
+        else if(i==0 && j==dimension-1){
+            cormap.put(sym,cormap.getOrDefault(sym,0)+1) ;
+        }
+        else if(i==dimension-1 && j==0){
+            cormap.put(sym,cormap.getOrDefault(sym,0)+1) ;
+        }
+        else if(i==j && i==dimension-1){
+            cormap.put(sym,cormap.getOrDefault(sym,0)+1) ;
+        }
         return cormap.get(sym)==4 ;
     }
 }
