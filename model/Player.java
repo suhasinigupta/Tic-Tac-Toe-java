@@ -1,5 +1,9 @@
 package model;
 
+import exception.InvalidSymbolsException;
+
+import java.util.Scanner;
+
 public class Player {
     private int id ;
     private String name ;
@@ -44,7 +48,23 @@ public class Player {
         this.id = id;
     }
 
-    public Move makeMove(){
-        return null ;
+    public Move makeMove(Board board){
+        Scanner sc=new Scanner(System.in) ;
+        System.out.println("Enter the row number") ;
+        int i=sc.nextInt() ;
+        System.out.println("Enter the col number") ;
+        int j=sc.nextInt() ;
+
+        Cell cell =board.getMatrix().get(i).get(j) ;
+        if(cell.getPlayer()==null){
+            cell.setCellstate(CellState.FILLED);
+            cell.setPlayer(this);
+            return new Move(cell,this) ;
+        }
+        else {
+            throw new RuntimeException("Enter in empty cell") ;
+        }
     }
+
+
 }
