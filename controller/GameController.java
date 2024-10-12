@@ -1,16 +1,19 @@
 package controller;
 import model.Game ;
 import model.*;
+import service.winningstrategy.WinningStrategy;
+import service.winningstrategy.WinningStrategyFactory;
+import service.winningstrategy.WinningStrategyName;
 
 import java.util.List ;
 
 public class GameController {
 
-    public Game createGame(List<Player> players , int dimension, WinningStrategy winningstrategy){
+    public Game createGame(List<Player> players , int dimension, WinningStrategyName name){
          return Game.builder().
                  setDimension(dimension).
                  setPlayers(players).
-                 setWinningStrategy(winningstrategy).build() ;
+                 setWinningStrategy(WinningStrategyFactory.getWinningStrategy(name,dimension)).build() ;
     }
 
     public Move makeMove(Game game, Player player){
@@ -18,8 +21,9 @@ public class GameController {
 
     }
 
-    public Player checkWinner(Move move){
-        return null ;
+    public Player checkWinner(Game game ,Move move){
+
+        return game.getWinningStrategy().checkWinner(game.getCurrentBoard(),move) ;
     }
 
     public GameStatus getGameStatus(Game game){
@@ -27,7 +31,7 @@ public class GameController {
     }
 
     public void displayBoard(Game game){
-           game.getCurrentBoard().displayBoard();
+        game.getCurrentBoard().displayBoard();
     }
 
     public void undo(Game game){

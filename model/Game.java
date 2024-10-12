@@ -1,6 +1,7 @@
 package model;
 import exception.InvalidPlayerSizeException;
 import exception.InvalidSymbolsException;
+import service.winningstrategy.WinningStrategy;
 
 import java.util.ArrayList;
 import java.util.HashSet;
