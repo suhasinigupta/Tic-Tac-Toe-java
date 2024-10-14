@@ -38,8 +38,14 @@ public class GameController {
 
     }
 
-    public void replay(Game game){
-
+    public Game replay(Game game){
+        return null ;
     }
 
+    public Game playagain(Game game){
+        return Game.builder().
+                setDimension(game.getDimension()).
+                setPlayers(game.getPlayers()).
+                setWinningStrategy(game.getWinningStrategy()).build() ;
+    }
 }

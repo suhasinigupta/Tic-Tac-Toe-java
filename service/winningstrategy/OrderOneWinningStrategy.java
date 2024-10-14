@@ -25,6 +25,12 @@ public class OrderOneWinningStrategy implements WinningStrategy{
         secdiagnol=new ArrayList<>() ;
         this.dimension=dimension;
         cormap=new HashMap<>() ;
+        for(int i=0; i<dimension; i++){
+            rowmap.add(new HashMap<>()) ;
+            colmap.add(new HashMap<>()) ;
+            firstdiagnol.add(new HashMap<>()) ;
+            secdiagnol.add(new HashMap<>()) ;
+        }
     }
     public Player checkWinner(Board board , Move move) {
         Cell cell=move.getCell() ;
@@ -69,18 +75,24 @@ public class OrderOneWinningStrategy implements WinningStrategy{
     private boolean checkAndUpdateCornerWinner(int i, int j, char sym){
         int r=0 ;
         int c=dimension-1 ;
+        boolean flag=false ;
         if(i==0 && j==0){
             cormap.put(sym,cormap.getOrDefault(sym,0)+1) ;
+            flag=true ;
         }
         else if(i==0 && j==dimension-1){
             cormap.put(sym,cormap.getOrDefault(sym,0)+1) ;
+            flag=true ;
         }
         else if(i==dimension-1 && j==0){
             cormap.put(sym,cormap.getOrDefault(sym,0)+1) ;
+            flag=true ;
         }
         else if(i==j && i==dimension-1){
             cormap.put(sym,cormap.getOrDefault(sym,0)+1) ;
+            flag=true ;
         }
-        return cormap.get(sym)==4 ;
+        if(flag) return cormap.get(sym)==4 ;
+        return false ;
     }
 }

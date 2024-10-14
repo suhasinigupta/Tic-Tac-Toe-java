@@ -1,5 +1,8 @@
 package model;
 
+import service.botplayingstrategy.BotPlayingStrategy;
+import service.botplayingstrategy.BotPlayingStrategyFactory;
+
 public class Bot extends Player{
 
     private BotDifficultyLevel botdifficultylevel ;
@@ -10,6 +13,6 @@ public class Bot extends Player{
 
     @Override
     public Move makeMove(Board board){
-
+          return BotPlayingStrategyFactory.getBotPlayingStrategy().makeMove(board, this);
     }
 }

@@ -101,7 +101,7 @@ public class Game {
 
         public Game build(){
             validate() ;
-            return new Game(currentBoard, players, winningStrategy)  ;
+            return new Game(new Board(dimension), players, winningStrategy)  ;
         }
 
 
